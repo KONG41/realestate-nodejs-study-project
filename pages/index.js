@@ -3,7 +3,6 @@ import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { baseUrl, fetchApi } from "../fetchApi/fetchApi";
 import Link from "next/link";
 import Property from "../component/Property";
-import millify from "millify";
 export const Banner = ({
   purpose,
   title1,

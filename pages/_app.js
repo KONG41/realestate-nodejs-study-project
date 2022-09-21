@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-
+        <link rel="shortcut icon" href="../static/office_branch.webp" />
       </Head>
       <ChakraProvider>
         <Layout>

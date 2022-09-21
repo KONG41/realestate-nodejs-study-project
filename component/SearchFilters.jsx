@@ -10,7 +10,7 @@ const SearchFilters = () => {
     const path = router.pathname;
 
     const { query } = router;
-    console.log(query)
+
     const values = getFilterValues(filterValue)
 
     values.forEach((item) => {
