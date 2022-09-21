@@ -3,6 +3,7 @@ import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { baseUrl, fetchApi } from "../fetchApi/fetchApi";
 import Link from "next/link";
 import Property from "../component/Property";
+import millify from "millify";
 export const Banner = ({
   purpose,
   title1,
@@ -39,7 +40,7 @@ export const Banner = ({
 );
 
 const Home = ({ propertiesForSale, propertiesForRent }) => (
-  console.log("get:", propertiesForSale, propertiesForRent),
+  //console.log("get:", propertiesForSale, propertiesForRent),
   (
     <Box>
       <Banner
@@ -52,14 +53,12 @@ const Home = ({ propertiesForSale, propertiesForRent }) => (
         linkName="/search?purpose=for-rent"
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
       />
-      <Flex flexWrap="wrap" justifyContent="center">
 
+      <Flex flexWrap="wrap" justifyContent="center">
         {propertiesForSale.map((property) => (
           <Property property={property} key={property.id} />
         ))}
       </Flex>
-
-
 
       <Banner
         purpose="BUY A HOME"
@@ -71,19 +70,19 @@ const Home = ({ propertiesForSale, propertiesForRent }) => (
         linkName="/search?purpose=for-sale"
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
       />
+
       <Flex flexWrap="wrap" justifyContent="center">
-        {
-          propertiesForRent.map((property) => (<Property property={property} key={property.id} />))
-        }
+        {propertiesForRent.map((property) => (<Property property={property} key={property.id} />))}
       </Flex>
     </Box >
-
   )
 );
+
 export async function getStaticProps() {
   const propertyForSale = await fetchApi(
     `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=20`
   );
+
   const propertyForRent = await fetchApi(
     `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=20`
   );
